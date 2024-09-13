@@ -1,1 +1,1 @@
-# intelligence-graph-tool
+# Intelligent Data Visualization Tool
