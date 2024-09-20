@@ -5,7 +5,7 @@ from huggingface_hub import InferenceClient
 
 client = InferenceClient(
     "meta-llama/Meta-Llama-3-8B-Instruct",
-    token="hfxxxxxxxxxxxxxxx",
+    token="hxxxxxxxxxxx",
 )
 
 def get_chat_response(prompt, max_tokens=50):
@@ -113,8 +113,8 @@ if 'file_uploaded' in st.session_state and st.session_state.file_uploaded:
         prompt += f"User Description:\n"
         prompt += f"{user_input}\n\n"
         
-        prompt += f"Please provide the x-axis, y-axis,  in the format [x-axis, y-axis] based on the above details. Provide answer only in three words." 
-
+        prompt += f"Please provide the x-axis, y-axis,  in the format x-axis, y-axis based on the above details. Provide answer only in two words." 
+        prompt += f"make sure that the x-axis and y-axis predicted is in the columns of the CSV file"
         if st.button("Generate Graph"):
             # Save the query to a file
            
@@ -133,8 +133,9 @@ if 'file_uploaded' in st.session_state and st.session_state.file_uploaded:
             f"{second_input}\n\n"
             f"Tell me which is the first graph mentioned after correction. If it's a bar chart, respond with 'Bar'; if it's a line chart, respond with 'line'; if it's a scatter plot, respond with 'scatter'; if it's a histogram, respond with 'Histogram'; if it's a pie chart, respond with 'Pie Chart'.\n"
             f"Only provide the type of the first graph in one word."
-            f"for example: Bar"
+            f"for example: line"
             f"no need for any other information"
+            f"only tell the graph type don't add any other sentences"
             )
             response2 = get_chat_response(prompt2)
             st.write(f"Graph type:\n{response2}")
